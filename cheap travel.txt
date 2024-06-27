@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+    int n, m, a, b;
+    scanf("%d %d %d %d", &n, &m, &a, &b);
+    
+    // Cost if using only single-ride tickets
+    int cost_single = n * a;
+    
+    // Cost if using only multi-ride tickets, even for extra rides
+    int cost_multi = ((n + m - 1) / m) * b;
+    
+    // Cost if using a combination of multi-ride and single-ride tickets
+    int cost_combination = (n / m) * b + ((n % m) * a < b ? (n % m) * a : b);
+    
+    // Determine the minimum cost
+    int min_cost = cost_single;
+    if (cost_multi < min_cost) {
+        min_cost = cost_multi;
+    }
+    if (cost_combination < min_cost) {
+        min_cost = cost_combination;
+    }
+    
+    printf("%d\n", min_cost);
+    return 0;
+}
